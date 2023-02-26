@@ -1,0 +1,89 @@
+﻿<Window x:Class="YOLOv4_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YOLOv4_UI"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        MinHeight="450" 
+        MinWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center">
+            <Label x:Name="Lbl_OutputPath" 
+                   Content="Каталог для результата: по умолчанию"
+                   Margin="10" 
+                   Padding="4" />
+            <Button x:Name="Btn_SelectOutputPath"
+                    Content="Выбрать каталог..."
+                    Click="Btn_SelectOutputPath_Click"
+                    Margin="10"
+                    Padding="4" />
+
+            <Label x:Name="Lbl_ModelPath" 
+                   Content="Путь к модели нейросети: по умолчанию"
+                   Margin="10" 
+                   Padding="4" />
+            <Button x:Name="Btn_SelectModelPath"
+                    Content="Выбрать путь к модели..."
+                    Click="Btn_SelectModelPath_Click"
+                    Margin="10"
+                    Padding="4" />
+        </StackPanel>
+
+        <ListView Margin="15"
+                  Name="LV_Images" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  Background="Transparent"
+                  Grid.Row="1"
+                  ItemsSource="{Binding LoadedImages}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" 
+                               ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True"
+                               ScrollViewer.VerticalScrollBarVisibility="Visible"
+                               HorizontalAlignment="Center" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Image Width="350"
+                           Stretch="Fill"
+                           HorizontalAlignment="Center"
+                           Source="{Binding ImageData}"
+                           Margin="30,0" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="10">
+            <Button x:Name="Btn_SelectImages"
+                    Content="Выбрать изображения"
+                    Click="Btn_SelectImages_Click"
+                    Padding="4"
+                    Margin="10" />
+            <Button x:Name="Btn_BeginTask"
+                    Content="Начать обнаружение объектов"
+                    Click="Btn_BeginTask_Click"
+                    Padding="4"
+                    Margin="10" />
+            <Button x:Name="Btn_CancelTask"
+                    Content="Отменить"
+                    Click="Btn_CancelTask_Click"
+                    Visibility="Collapsed"
+                    Padding="4"
+                    Margin="10" />
+        </StackPanel>
+    </Grid>
+</Window>
