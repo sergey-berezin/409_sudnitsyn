@@ -134,3 +134,4 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
+/YOLOv4MLNet/YOLOv4MLNet/Models/yolov4.onnx
